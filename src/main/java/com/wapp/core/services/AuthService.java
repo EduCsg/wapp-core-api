@@ -29,7 +29,7 @@ public class AuthService {
         if (userRepository.existsByEmail(registerRequestDto.email()))
             throw new AuthException(AuthException.AuthErrorTypeEnum.EMAIL_DUPLICATED, "Email já cadastrado.");
 
-        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[.@$!%*?&])[A-Za-z\\d.@$!%*?&]{8,}$";
         if (!Pattern.matches(passwordPattern, registerRequestDto.password()))
             throw new AuthException(AuthException.AuthErrorTypeEnum.INVALID_CREDENTIALS,
                     "A senha deve ter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula, número e caractere especial");
